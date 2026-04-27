@@ -1,0 +1,65 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-inline);
+}
+
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: opacity var(--transition-base);
+
+  &:hover,
+  &:focus-visible {
+    opacity: 0.7;
+  }
+}
+
+.logoMark {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-fg);
+  display: inline-block;
+}
+
+.logoText {
+  font-size: var(--fs-md);
+  letter-spacing: 0.02em;
+  font-weight: var(--fw-bold);
+}
+
+.cartLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  transition: opacity var(--transition-base);
+
+  &:hover,
+  &:focus-visible {
+    opacity: 0.7;
+  }
+}
+
+.cartCount {
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+}

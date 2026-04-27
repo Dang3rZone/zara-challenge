@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-// import { Navbar } from '@/shared/components/Navbar/Navbar';
+import { Navbar } from '@/shared/components/Navbar/Navbar';
 import styles from './Layout.module.scss';
 
 export function Layout() {
@@ -12,7 +12,7 @@ export function Layout() {
 
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <main className={styles.main}>
         <div className={styles.container}>
           <Outlet />
