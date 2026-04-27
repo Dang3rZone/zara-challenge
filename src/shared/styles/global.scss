@@ -1,0 +1,8 @@
+@use './tokens';
+@use './reset';
+
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
