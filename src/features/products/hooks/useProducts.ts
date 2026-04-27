@@ -1,26 +1,39 @@
 import { useEffect, useState } from 'react';
 import { type AsyncState } from '@/shared/types/async';
-import { getProductById } from '../api/products.api';
-import { type Product } from '../types';
+import { dedupeById } from '@/shared/utils/dedupeById';
+import { getProducts } from '../api/products.api';
+import { type ProductListItem } from '../types';
 
-export function useProduct(id: string | undefined): AsyncState<Product> {
-  const [state, setState] = useState<AsyncState<Product>>(
-    id ? { status: 'loading' } : { status: 'idle' },
-  );
+interface UseProductsOptions {
+  search: string;
+  limit?: number;
+}
+
+/**
+ * Load the product listing for a given search term. Aborts the in-flight
+ * request when the search term changes, preventing out-of-order
+ * responses from overwriting the UI with stale data.
+ *
+ * Defensively dedupes by `id` — the upstream API has been observed to
+ * return the same SKU twice in a single response, which would otherwise
+ * trigger React's duplicate-key warning and ship a confusing UX with two
+ * identical "Add to cart" cards.
+ */
+export function useProducts({
+  search,
+  limit = 20,
+}: UseProductsOptions): AsyncState<ProductListItem[]> {
+  const [state, setState] = useState<AsyncState<ProductListItem[]>>({ status: 'loading' });
 
   useEffect(() => {
-    if (!id) {
-      setState({ status: 'idle' });
-      return;
-    }
-
     const controller = new AbortController();
-    setState({ status: 'loading' });
 
-    getProductById(id, controller.signal)
+    setState((prev) => (prev.status === 'success' ? prev : { status: 'loading' }));
+
+    getProducts({ search, limit, signal: controller.signal })
       .then((data) => {
         if (controller.signal.aborted) return;
-        setState({ status: 'success', data });
+        setState({ status: 'success', data: dedupeById(data) });
       })
       .catch((err: unknown) => {
         if (controller.signal.aborted) return;
@@ -32,7 +45,7 @@ export function useProduct(id: string | undefined): AsyncState<Product> {
       });
 
     return () => controller.abort();
-  }, [id]);
+  }, [search, limit]);
 
   return state;
 }
