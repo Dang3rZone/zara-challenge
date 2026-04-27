@@ -1,0 +1,99 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  flex: 1;
+  min-height: 60vh;
+}
+
+.title {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.02em;
+
+  @include md {
+    font-size: var(--fs-3xl);
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-top: var(--space-5);
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fs-md);
+  letter-spacing: 0.04em;
+}
+
+.totalLabel {
+  color: var(--color-fg);
+}
+
+.totalValue {
+  color: var(--color-fg);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+
+  @include md {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.continueButton {
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+  background: var(--color-bg);
+  color: var(--color-fg);
+  border: 1px solid var(--color-fg);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
+
+  &:hover,
+  &:focus-visible {
+    background: var(--color-fg);
+    color: var(--color-bg);
+  }
+}
+
+.payButton {
+  @include reset-button;
+  padding: var(--space-4);
+  background: var(--color-fg);
+  color: var(--color-bg);
+  border: 1px solid var(--color-fg);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: opacity var(--transition-base);
+
+  &:hover,
+  &:focus-visible {
+    opacity: 0.85;
+  }
+}

@@ -13,11 +13,11 @@ const ProductDetailPage = lazy(() =>
     default: m.ProductDetailPage,
   })),
 );
-// const CartPage = lazy(() =>
-//   import('@/features/cart/pages/CartPage/CartPage').then((m) => ({
-//     default: m.CartPage,
-//   })),
-// );
+const CartPage = lazy(() =>
+  import('@/features/cart/pages/CartPage/CartPage').then((m) => ({
+    default: m.CartPage,
+  })),
+);
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'cart',
-        element: <Suspense fallback={<RouteFallback />}>{/* <CartPage /> */}</Suspense>,
+        element: <Suspense fallback={<RouteFallback />}>{<CartPage />}</Suspense>,
       },
       { path: '*', element: <Navigate to="/" replace /> },
     ],
