@@ -1,0 +1,59 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.input {
+  width: 100%;
+  padding: var(--space-3) 0;
+  border: 0;
+  background: transparent;
+  font-size: var(--fs-xl);
+  color: var(--color-fg);
+
+  &::placeholder {
+    color: var(--color-fg-subtle);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.clearButton {
+  @include reset-button;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  color: var(--color-fg-muted);
+  transition: color var(--transition-base);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-fg);
+  }
+}
+
+.count {
+  font-size: var(--fs-xs);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.08em;
+}
+
+.visuallyHidden {
+  @include visually-hidden;
+}

@@ -1,0 +1,59 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid transparent;
+  transition: border-color var(--transition-base);
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--color-border);
+  }
+}
+
+.imageWrapper {
+  aspect-ratio: 1 / 1;
+  background: var(--color-bg-muted);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.image {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.brand {
+  font-size: var(--fs-xs);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.05em;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--fs-sm);
+}
+
+.name {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.price {
+  white-space: nowrap;
+  color: var(--color-fg);
+}

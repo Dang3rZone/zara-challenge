@@ -1,0 +1,20 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.status {
+  padding-block: var(--space-7);
+  text-align: center;
+  color: var(--color-fg-muted);
+}
+
+.statusHint {
+  margin-top: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--color-fg-subtle);
+}
